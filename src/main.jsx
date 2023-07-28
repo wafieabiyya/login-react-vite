@@ -4,11 +4,13 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import LoginPage from './Pages/login.jsx'
 import RegisterPage from './Pages/register.jsx'
+import ErrorPage from './Pages/erorrPage'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <div>hellow</div>
+    element: <div>hellow</div>,
+    errorElement: <ErrorPage/>
   },
   {
     path: '/login',
@@ -18,6 +20,7 @@ const router = createBrowserRouter([
     path: '/register',
     element: <RegisterPage/>
   }
+ 
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
