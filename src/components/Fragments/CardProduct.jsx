@@ -3,7 +3,7 @@ import Button from "../Elements/Button/Button"
 const CardProduct = (props) => {
     const {children} = props;
     return (
-        <div className="w-full max-w-sm bg-white border-gray-400 rounded-lg shadow mx-3">
+        <div className="w-full max-w-sm bg-white border-gray-400 rounded-lg shadow mx-3 flex flex-col justify-between">
             {children}
         </div>
     )
@@ -21,12 +21,12 @@ const ProductImage = (props) => {
 }
 
 const ProductDetail = (props) => {
-    const {title, children} = props
+    const {name, children} = props
     return (
-        <div className="px-5 pb-5">
+        <div className="px-5 pb-5 h-full">
             <a href="">
                 <h5 className="text-xl text-black tracking-tight font-bold">
-                    {title}
+                    {name}
                 </h5>
                 <p className="text-s text-gray-700 py-2">{children}</p>
             </a>
