@@ -11,6 +11,8 @@ const AuthLayout = (props) => {
                     Welcome, please enter your details
                 </p>
                 {children}
+                <Navigation type={type} />  {/* using if condition*/}
+
                 {/* <p className="mt-5 text-center">
                     {type === 'login' ? "Don't have an account? " : "Already have an account?"}
 
@@ -21,9 +23,6 @@ const AuthLayout = (props) => {
                         <Link to="/login" className="font-bold text-zinc-400 ml-2">Sign in</Link>
                     )}
                 </p> */} {/* using tenarry and &&*/}
-
-                <Navigation type={type} />  {/* using if condition*/}
-
             </div>
         </div>
     )
