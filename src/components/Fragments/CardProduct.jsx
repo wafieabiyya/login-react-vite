@@ -3,7 +3,12 @@ import Button from "../Elements/Button/Button"
 const CardProduct = (props) => {
     const { children } = props;
     return (
-        <div className="w-full max-w-xs bg-white border-gray-400 rounded-lg shadow-xl mx-3 my-2 flex flex-col justify-between">
+        <div className="w-full max-w-xs
+         bg-white
+         border-gray-400 
+          rounded-lg 
+          shadow-xl mx-3 my-2 
+          flex flex-col justify-between">
             {children}
         </div>
     )

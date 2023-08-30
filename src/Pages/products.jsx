@@ -1,7 +1,6 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import CardProduct from "../components/Fragments/CardProduct";
 import Button from "../components/Elements/Button/Button";
-
 
 {/* static rendering list*/ }
 
@@ -29,13 +28,35 @@ const products = [
 	}
 ]
 
+//to get email data from login form
 const email = localStorage.getItem('email');
-const ProductPage = () => {
-	const [cart, setCart] = useState([])
 
+const ProductPage = () => {
+	//useState declaration to handle item add to cart
+	const [cart, setCart] = useState([]);
+	const [totalPrice, setTotalPrice] = useState(0);
+
+	useEffect(() => {
+		setCart(JSON.parse(localStorage.getItem('cart')) || [])
+	}, [])
+
+	useEffect(() => {
+		if (cart.length > 0) {
+			//get total price of cart
+			const sumTotalCart = cart.reduce((acc, item) => {
+				const product = products.find((product) => product.id === item.id)
+				return acc + product.price * item.qty
+			}, 0)
+			setTotalPrice(sumTotalCart)
+			localStorage.setItem("cart", JSON.stringify(cart))
+		}
+	}, [cart])
+
+	// to handle logout and clear data from local storage
 	const handleLogout = () => {
 		localStorage.removeItem('email');
 		localStorage.removeItem('password');
+		localStorage.removeItem('cart')
 		window.location.href = "/login"
 	}
 
@@ -65,7 +86,7 @@ const ProductPage = () => {
 						</CardProduct>
 					))}
 				</div>
-				<div className="w-2/4">
+				<div className="w-2/6">
 					<h1 className="text-3xl font-bold ml-5 my-2">Cart</h1>
 					<table className="table-auto text-left border-separate border-spacing-5">
 						<thead>
@@ -88,6 +109,10 @@ const ProductPage = () => {
 									</tr>
 								)
 							})}
+							<tr className="font-bold">
+								<td colSpan={3}>Total Price</td>
+								<td>Rp{totalPrice.toLocaleString('id-ID', { styles: 'currency', currency: 'IDR' })}</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
